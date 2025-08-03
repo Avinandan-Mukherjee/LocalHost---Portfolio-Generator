@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LocalHost</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='inputstyle.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Loading chobi -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="loading-text">GENERATING</div>
+            <div class="loading-spinner">
+                <div class="loading-line"></div>
+                <div class="loading-line"></div>
+                <div class="loading-line"></div>
+                <div class="loading-line"></div>
+                <div class="loading-line"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="content">
+        <form method="POST" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+
+            <fieldset>
+                <legend>Your Information</legend>
+
+                {{ form.fullname.label }}
+                {{ form.fullname }}
+
+                {{ form.image.label }}
+                {{ form.image }}
+
+                {{ form.email.label }}
+                {{ form.email }}
+
+                {{ form.education.label }}
+                {{ form.education }}
+
+                {{ form.company.label }}
+                {{ form.company }}
+
+                {{ form.skills.label }}
+                {{ form.skills }}
+            </fieldset>
+
+            <fieldset>
+                <legend>Your Preferences</legend>
+
+                <div class="preferences-row">
+                    <div class="theme-section">
+                        {{ form.theme.label }}
+                        <div class="radio-group">
+                            {% for subfield in form.theme %}
+                                <div class="radio-item">
+                                    {{ subfield }} {{ subfield.label }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                    <div class="color-section">
+                        {{ form.color.label }}
+                        {{ form.color }}
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Your Socials</legend>
+
+                <div class="social-item">
+                    <div class="social-label">
+                        <i class="fa-brands fa-github"></i>
+                        {{ form.github.label }}
+                    </div>
+                    {{ form.github }}
+                </div>
+
+                <div class="social-item">
+                    <div class="social-label">
+                        <i class="fa-brands fa-linkedin"></i>
+                        {{ form.linkedin.label }}
+                    </div>
+                    {{ form.linkedin }}
+                </div>
+
+                <div class="social-item">
+                    <div class="social-label">
+                        <i class="fa-brands fa-instagram"></i>
+                        {{ form.instagram.label }}
+                    </div>
+                    {{ form.instagram }}
+                </div>
+
+                <div class="social-item">
+                    <div class="social-label">
+                        <i class="fa-brands fa-youtube"></i>
+                        {{ form.youtube.label }}
+                    </div>
+                    {{ form.youtube }}
+                </div>
+            </fieldset>
+
+            <div class="prompt">
+                {{ form.prompt.label }}
+                {{ form.prompt }}
+            </div>
+
+            {{ form.submit }}
+        </form>
+    </div>
+    
+    <script>
+        document.querySelector('form').addEventListener('submit', function() {
+            document.getElementById('loadingOverlay').style.display = 'flex';
+        });
+    </script>
+</body>
+</html>

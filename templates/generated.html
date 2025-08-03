@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LocalHost - Preview</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='mystyle.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+<body>
+    <div id="main">
+        <div id="topbar">
+            <div id="toggle-buttons">
+                <button id="codeBtn" class="active">Code</button>
+                <button id="previewBtn">Preview</button>
+            </div>
+            <div id="download-section">
+                <a href="{{ url_for('download_files') }}" class="download-btn">
+                    <i class="fas fa-download"></i>
+                    Download Files
+                </a>
+            </div>
+        </div>
+
+        <div id="code-section">
+            <div class="code-file active" id="html-file">
+                <div class="code-header">
+                    <div class="code-title">HTML</div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <div class="file-selector">
+                            <button class="file-tab active" onclick="showFile('html')">index.html</button>
+                            <button class="file-tab" onclick="showFile('css')">style.css</button>
+                            <button class="file-tab" onclick="showFile('js')">script.js</button>
+                        </div>
+                        <button class="copy-btn" onclick="copyCode('html')">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="html">
+                    <pre><code class="language-html">{{ html }}</code></pre>
+                </div>
+            </div>
+            
+            <div class="code-file" id="css-file">
+                <div class="code-header">
+                    <div class="code-title">CSS</div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <div class="file-selector">
+                            <button class="file-tab" onclick="showFile('html')">index.html</button>
+                            <button class="file-tab active" onclick="showFile('css')">style.css</button>
+                            <button class="file-tab" onclick="showFile('js')">script.js</button>
+                        </div>
+                        <button class="copy-btn" onclick="copyCode('css')">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="css">
+                    <pre><code class="language-css">{{ css }}</code></pre>
+                </div>
+            </div>
+            
+            <div class="code-file" id="js-file">
+                <div class="code-header">
+                    <div class="code-title">JavaScript</div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <div class="file-selector">
+                            <button class="file-tab" onclick="showFile('html')">index.html</button>
+                            <button class="file-tab" onclick="showFile('css')">style.css</button>
+                            <button class="file-tab active" onclick="showFile('js')">script.js</button>
+                        </div>
+                        <button class="copy-btn" onclick="copyCode('js')">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="js">
+                    <pre><code class="language-js">{{ js }}</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div id="preview-section">
+            <div id="preview-controls">
+                <button onclick="openNewTab()">View in New Tab</button>
+                <button onclick="toggleMobile()">Toggle Mobile View</button>
+            </div>
+            <iframe id="preview-frame" src="{{ url_for('static', filename='codes/index.html') }}"></iframe>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='myscript.js') }}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    
+</body>
+</html>
